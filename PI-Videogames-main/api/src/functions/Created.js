@@ -42,7 +42,7 @@ const bringInformation= async (name)=> {
      }else{
          // Case Name
            pageOne = await axios.get( 
-             `https://api.rawg.io/api/games?key=${API_KEY}&search=${name}&page_size=15`
+             `https://api.rawg.io/api/games?key=${API_KEY}&search=${name}`
            );
 
            return [...pageOne.data.results];
@@ -106,7 +106,12 @@ async function generateGenres(){
 } 
 
 
+function Name(name){
+  bringInformation(name)
+}
+
 module.exports = {
+  Name,
 bringInformation,
  bringInformationDatabase, 
  returnAll,generateGenres

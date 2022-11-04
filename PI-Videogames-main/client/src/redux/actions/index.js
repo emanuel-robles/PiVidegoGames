@@ -39,24 +39,12 @@ export function postVideoGame(payload){
 
 
 
+export function searchVideoGames(){
 
-
-
-
-
-
-
-//Caca:
-export const GET_MOVIE_DETAILS = "GET_MOVIE_DETAILS";
-export const CREATE_MOVIE = "CREATE_MOVIE";
-export const  GET_BY_NAME='get_by_name';
-export const FILTER_BY_CREATED='filter_by_created';
-let id = 5
-
-export function searchVideoGames(name){
+    
     return async(dispatch)=>{
         try {
-            const json=await axios.get('http://localhost:3001/videogames?name='+name)
+            const json=await axios.get('http://localhost:3001/videogames')
            //  console.log(json.data)
             return dispatch({
                 type:'get_by_name',
@@ -67,6 +55,18 @@ export function searchVideoGames(name){
         }
     }
 }
+
+
+
+
+
+
+export const GET_MOVIE_DETAILS = "GET_MOVIE_DETAILS";
+export const CREATE_MOVIE = "CREATE_MOVIE";
+export const  GET_BY_NAME='get_by_name';
+export const FILTER_BY_CREATED='filter_by_created';
+let id = 5
+
 
 export function filterByCreated(payload){
     return{
@@ -85,8 +85,6 @@ export function filterByCreated(payload){
         payload
     }
 
-
-    //falto Order_by Name una hora 1:12 
 
     
    

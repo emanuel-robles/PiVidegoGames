@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import  {useState,useEffect} from "react"
 import {useDispatch, useSelector} from "react-redux"
 import Paginado from "./Paginado";
+import SearchGames from "./SearchGame"
 // Fijense en los test que SI O SI tiene que ser un class component, de otra forma NO VAN A PASAR LOS TEST.
 export default function Home (){
   const dispatch = useDispatch()
@@ -75,6 +76,7 @@ export default function Home (){
           <option value="Sports">Juegos De Deportes</option>
           <option value="Fighting">Pelea</option>
           </select>
+          <SearchGames/>
           <Paginado
           charactersPerPage={charactersPerPage}
           allGames={allGames.length}
@@ -88,7 +90,8 @@ export default function Home (){
                         </Link>
 
 
-</fragment>                )
+</fragment>         
+       )
             } 
                )
             }
