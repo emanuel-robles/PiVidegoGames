@@ -6,7 +6,7 @@ const{getGameName}=require("../functions/getname")
 const videogameRouter= express.Router()
 
 videogameRouter.get('/',getvideogame);
-videogameRouter.get('/',getGameName)
+videogameRouter.get('/name/:name',getGameName)
 videogameRouter.get('/:id',getGameId)
 videogameRouter.post('/',postVideoGame);
 module.exports = {videogameRouter};

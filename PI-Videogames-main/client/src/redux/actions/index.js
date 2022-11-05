@@ -1,6 +1,8 @@
 import axios from "axios"
 export const  GET_GENRES='get_genres';
 export const POST_VIDEOGAME='post_videogame';
+export const CLEAR_STATE='clear_state';
+export const CLEAR_VG='clear_vg';
 
 export function getGames(){
     return async function(dispatch){
@@ -39,12 +41,12 @@ export function postVideoGame(payload){
 
 
 
-export function searchVideoGames(){
+export function searchVideoGames(name){
 
     
     return async(dispatch)=>{
         try {
-            const json=await axios.get('http://localhost:3001/videogames')
+            const json=await axios.get('http://localhost:3001/videogames/name/'+ name)
            //  console.log(json.data)
             return dispatch({
                 type:'get_by_name',
@@ -56,7 +58,18 @@ export function searchVideoGames(){
     }
 }
 
-
+export function clearState(){
+    return {
+        type:CLEAR_STATE
+       
+    }
+}
+export function clearVg(){
+    return {
+        type:CLEAR_STATE
+       
+    }
+}
 
 
 

@@ -1,6 +1,7 @@
 const initialState = {
     games : [],
-    genres:[]
+    genres:[],
+    videogame:{}
   }
   function rootReducer (state= initialState,action){
    switch(action.type){
@@ -15,6 +16,18 @@ const initialState = {
                   genres:action.payload
               }   
           }
+          case 'clear_state':{
+              return{
+                  ...state,
+                  videogame:{}
+              }
+          }
+          case 'clear_vg':{
+              return{
+                  ...state,
+                  videogames:[]
+              }
+          }
            case 'post_videogame':{
               return{
                   ...state}
@@ -25,6 +38,7 @@ const initialState = {
                   games:action.payload
               }
           }
+          
   
            default:
                return state;

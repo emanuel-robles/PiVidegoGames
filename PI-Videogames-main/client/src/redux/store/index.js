@@ -13,4 +13,3 @@ const composeEnhancers =
 );
 
 export default store
-

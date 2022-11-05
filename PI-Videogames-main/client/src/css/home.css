@@ -1,0 +1,9 @@
+.home {
+    background-image:url(../Images/fondo.jpg);
+
+}
+.game {
+    color:hsl(0, 0%, 100%);
+    margin:0;
+    padding:0;
+}

@@ -40,10 +40,14 @@ const bringInformation= async (name)=> {
         return[...pageOne, ...pageTwo,...pageThree];
         // ....................................................
      }else{
-         // Case Name
-           pageOne = await axios.get( 
-             `https://api.rawg.io/api/games?key=${API_KEY}&search=${name}`
-           );
+         // Case Name}
+         // console.log('name: ' + name);
+         const nameSanitizado = name.replaceAll(" ", "%20");
+         // console.log('nameSanitizado: ' + nameSanitizado);
+         const url = `https://api.rawg.io/api/games?key=${API_KEY}&search=${nameSanitizado}`;
+         // console.log('URL : ' + url);
+           pageOne = await axios.get(url);
+           // console.log('pageOne: ' + JSON.stringify(pageOne.data.results));
 
            return [...pageOne.data.results];
          // ....................................................
@@ -107,7 +111,7 @@ async function generateGenres(){
 
 
 function Name(name){
-  bringInformation(name)
+  return bringInformation(name)
 }
 
 module.exports = {

@@ -10,12 +10,10 @@ const getGameName = async (req,res)=> {
         var game;
         // <=4 means it's from the API
         if(name){
-            game=  Name(name);
+            game= await Name(name);
             // console.log(getOneVideoGame(id))
             // console.log(game)
-            game? 
-            res.send(game):
-            res.status(404).send('Game not found');
+            game?res.send(game):res.status(404).send('Game not found');
         }
         // id>4 means it's from DB 
         else{

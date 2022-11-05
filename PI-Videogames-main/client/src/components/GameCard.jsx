@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 //PARA QUE LOS TEST CORRAN, DEBEN HACER ESTE COMPONENTE COMO UN FUNCIONAL COMPONENT.
 
-const MovieCard = (props) => {
+export const GameCard = (props) => {
 
   const dispatch = useDispatch()  
   return (
@@ -16,13 +16,13 @@ const MovieCard = (props) => {
      <h3>{props.name}</h3>
      <img src={props.background_image} alt=" img not found" width="800px" height="800px" />
      <p>Genres: { props.genres.find(e=> e.name).name}</p>
-  
-     <Link to={`/videogames/${props.id}`}>{props.name}</Link>
+     <p>{props.name}</p>
+     {/*BORRAR <Link to={`/videogames/${props.id}`}></Link> */}
     </div>
   );
 };
 
-export default MovieCard;
+export default GameCard;
 
 
 
