@@ -29,8 +29,7 @@ function validate(state){
 
   return error
 }
-// Si no lo hacen asi los test no van a correr.
-const CreateMovie = (props) => {
+const CreateGames = (props) => {
   
   let plataformss = [
     "PC","PlayStation","Xbox","Nintendo Switch","iOS", "Android","Nintendo","PS Vita","PSP","Wii","Game Boy","Atari","SEGA","PS5","PS4","PS3","PS2","PS1",
@@ -234,4 +233,4 @@ const CreateMovie = (props) => {
   );
 };
 
-export default CreateMovie;
+export default CreateGames;

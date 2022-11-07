@@ -1,5 +1,3 @@
-
-import React, { Component } from "react";
 import { Fragment } from "react";
 import { getGames } from "../redux/actions"
 import GameCard from "./GameCard"
@@ -9,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux"
 import Paginado from "./Paginado";
 import SearchGames from "./SearchGame"
 import  "../css/home.css" 
-// Fijense en los test que SI O SI tiene que ser un class component, de otra forma NO VAN A PASAR LOS TEST.
 export default function Home() {
   const dispatch = useDispatch()
   const allGames = useSelector((state) => state.games)
@@ -17,7 +14,7 @@ export default function Home() {
   const [charactersPerPage, setCharactersPerPage] = useState(15)
   const indexOfLastCharacters = currentPage + charactersPerPage
   const indexOfFirstCharacter = indexOfLastCharacters - charactersPerPage
-  const currentCharacters = allGames.slice(indexOfFirstCharacter, indexOfLastCharacters) // allCharacters == allGames
+  const currentCharacters = allGames.slice(indexOfFirstCharacter, indexOfLastCharacters) 
   const paginado = (pageNumber) => {
     setCurrentpage(pageNumber)
   }
@@ -37,6 +34,7 @@ export default function Home() {
 
   return (
     <div className="home">
+    
 
       <Link to="/Game">Crear VideoJuego</Link>
       <h1 className="game" >Games:</h1>
@@ -83,6 +81,7 @@ export default function Home() {
           <option value="Sports">Juegos De Deportes</option>
           <option value="Fighting">Pelea</option>
         </select>
+   
         <SearchGames />
         <Paginado
           charactersPerPage={charactersPerPage}
@@ -105,7 +104,6 @@ export default function Home() {
       </div>
     </div>
   )
-  //llegue hora
 
 
 }

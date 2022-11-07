@@ -13,7 +13,6 @@ const getvideogame = async function (req,res) {
 
         res.status(200).send(videogamesTotal)
     }
-    //no busca los nombres
 }
 module.exports = {
     getvideogame

@@ -1,56 +1,37 @@
-const { Router } = require('express');
 const axios = require('axios');
 const  {Videogame,Genres } = require('../db.js');
-const router = Router();
-// const bringInformation= traer información
 require("dotenv").config();
+
 const { API_KEY } = process.env;
 const bringInformation= async (name)=> {
-    // Case no name 
-    // Caja de variables ......................
     let pageOne = [];
     let pageTwo = [];
     let pageThree = [];
 
       if(!name){
-     // Si no existe name entro acá
-        // 0 --> 40 ...........................................
         pageOne = await axios.get(
           `https://api.rawg.io/api/games?key=${API_KEY}&page_size=40`
         ); 
         let uri = pageOne.data.next
         pageOne = [...pageOne.data.results];
-        // 40 --> 80 ..........................................
         pageTwo = await axios.get( 
           uri
         );
         uri = pageTwo.data.next
 
         pageTwo = [...pageTwo.data.results];
-        // 80 --> 120 .........................................
+
         pageThree = await axios.get( 
           uri
         );
         pageThree = [...pageThree.data.results];
-
-
-          // Si quitamos el flag de page_size nos traerá 20 items nomás, por lo tanto para llegar a 100 deberíamos crear más solicitudes (5 Total)
-
-        // ....................................................
         return[...pageOne, ...pageTwo,...pageThree];
-        // ....................................................
-     }else{
-         // Case Name}
-         // console.log('name: ' + name);
-         const nameSanitizado = name.replaceAll(" ", "%20");
-         // console.log('nameSanitizado: ' + nameSanitizado);
-         const url = `https://api.rawg.io/api/games?key=${API_KEY}&search=${nameSanitizado}`;
-         // console.log('URL : ' + url);
-           pageOne = await axios.get(url);
-           // console.log('pageOne: ' + JSON.stringify(pageOne.data.results));
 
+     }else{
+         const nameSanitizado = name.replaceAll(" ", "%20");
+         const url = `https://api.rawg.io/api/games?key=${API_KEY}&search=${nameSanitizado}`;
+           pageOne = await axios.get(url);
            return [...pageOne.data.results];
-         // ....................................................
      }
 }
 const bringInformationDatabase= async ()=> {

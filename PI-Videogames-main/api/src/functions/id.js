@@ -1,5 +1,4 @@
 const {API_KEY}=process.env;
-const {Videogame, Genres}= require('../db');
 const axios= require('axios')
 
 const idvideogame= async (id) => {

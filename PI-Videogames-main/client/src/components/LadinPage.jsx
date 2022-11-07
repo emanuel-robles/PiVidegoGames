@@ -4,7 +4,7 @@ import  "../css/ladinPage.css"
 
 export default function LandigPage(){
     return(
-        <div className="ladinPage" >
+        <div className="ladinPage" id="app" >
             <h1 className="ladin"
             
             >Game Library</h1>

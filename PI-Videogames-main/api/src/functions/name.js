@@ -1,9 +1,5 @@
-
-
 const {API_KEY}=process.env;
-const {Videogame, Genres}= require('../db');
 const axios= require('axios')
-
 const namevideogame= async (name) => {
     try{
         const juego = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}`)
@@ -27,4 +23,3 @@ const namevideogame= async (name) => {
 module.exports ={
 namevideogame
 }
-

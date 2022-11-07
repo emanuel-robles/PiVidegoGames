@@ -8,7 +8,6 @@ export default function SearchBar() {
     function handleInputChange(e){
         e.preventDefault()
         setName(e.target.value)
-        // console.log(name)
     }
     function handleSubmit(e){
         e.preventDefault()
@@ -33,4 +32,3 @@ export default function SearchBar() {
     </form>
   )
 }
-//D/Generation%20HD

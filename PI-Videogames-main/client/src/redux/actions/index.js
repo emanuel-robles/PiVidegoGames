@@ -1,8 +1,22 @@
 import axios from "axios"
-export const  GET_GENRES='get_genres';
-export const POST_VIDEOGAME='post_videogame';
+
+export const  GET_GAMES='GET_GAMES'; //=== GET_VG='get_videogames';
+export const  GET_GENRES='get_genres'; // Create mov
+export const POST_VIDEOGAME='post_videogame';//Create mov
+export const  GET_BY_NAME='get_by_name'; //Search Game
+export const FILTER_BY_GENRE='filter_by_genre'
 export const CLEAR_STATE='clear_state';
 export const CLEAR_VG='clear_vg';
+export const  GET_BY_ID='get_by_id';
+export const ORDER_ASC_DESC='order_asc_desc';
+export const ORDER_BY_RATING='order_by_rating';
+export const RATING4='rating4';
+export const FILTER_BY_CREATED='filter_by_created';
+export const GET_MOVIE_DETAILS = "GET_MOVIE_DETAILS";
+export const CREATE_MOVIE = "CREATE_MOVIE";
+let id = 5
+
+
 
 export function getGames(){
     return async function(dispatch){
@@ -38,9 +52,6 @@ export function postVideoGame(payload){
     }
 
 }
-
-
-
 export function searchVideoGames(name){
 
     
@@ -58,6 +69,15 @@ export function searchVideoGames(name){
     }
 }
 
+
+
+
+export function filterByGenre(payload){
+    return{
+        type:FILTER_BY_GENRE,
+        payload
+    }
+}
 export function clearState(){
     return {
         type:CLEAR_STATE
@@ -70,16 +90,36 @@ export function clearVg(){
        
     }
 }
+export function getDetail(id){
+    return async function(dispatch){
+        const json =await axios.get('http://localhost:3001/videogames/'+id)
+        return dispatch({
+            type:'get_by_id',
+            payload:json.data
+        })
+    }
+}
+export function orderAscDesc(payload){
+    return{
+        type:ORDER_ASC_DESC,
+        payload
+    }
+}  
 
+export function orderRating(payload){
+    return{
+        type:ORDER_BY_RATING,
+        payload
+    }
 
+} 
+export function rating4(payload){
+    return{
+        type:RATING4,
+        payload
+    }
 
-
-export const GET_MOVIE_DETAILS = "GET_MOVIE_DETAILS";
-export const CREATE_MOVIE = "CREATE_MOVIE";
-export const  GET_BY_NAME='get_by_name';
-export const FILTER_BY_CREATED='filter_by_created';
-let id = 5
-
+}
 
 export function filterByCreated(payload){
     return{
@@ -87,20 +127,23 @@ export function filterByCreated(payload){
             payload
     }
 }
+export const createMovie = (payload) => {
+    return { 
+        type: 'CREATE_MOVIE',
+        payload: { ...payload,
+          id: ++id 
+   
+        }
+   
+     }
 
-
-
-
+ };
  export function filterCharactersByStatus(payload){
     console.log(payload); 
     return {
         type: 'FILTER_BY_STATUS',
         payload
     }
-
-
-    
-   
  }
  export function filterCreated(payload){
     console.log(payload);
@@ -111,24 +154,5 @@ export function filterByCreated(payload){
 
  } 
 
- export const getMovieDetail = (id) => {
-    return async (dispatch) => {
+
    
-       return (fetch(`https://api.rawg.io/api/games/${id}?key=a81ada6e4cc9422ebf5410e9c0696e01`)
-       .then(response => response.json())
-       .then(json => dispatch({type: GET_MOVIE_DETAILS, payload: json})))};
-    
-    
-    };
-   
-   export const createMovie = (payload) => {
-       return { 
-           type: 'CREATE_MOVIE',
-           payload: { ...payload,
-             id: ++id 
-      
-           }
-      
-        }
-   
-    };
