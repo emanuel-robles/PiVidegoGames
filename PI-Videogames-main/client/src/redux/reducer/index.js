@@ -63,8 +63,8 @@ function rootReducer (state= initialState,action){
         }
     }
     case 'order_by_rating':{
-        const allvg=state.videogamescopy
-        var orderedVg=allvg.sort(function(a,b){
+        const allvg=state.gamescopy
+        var orderedVg=allvg && allvg.sort(function(a,b){
             if(a.rating >b.rating){
                 return 1;
             }
@@ -82,9 +82,9 @@ function rootReducer (state= initialState,action){
         
     }
     case 'order_asc_desc':{
-        const allvg=state.videogamescopy
+        const allvg=state.gamescopy
         console.log(allvg)
-        var orderedVg1=allvg.sort(function(a,b){
+        var orderedVg1=allvg&&allvg.sort(function(a,b){
             if(a.name >b.name){
                 return 1;
             }

@@ -1,5 +1,6 @@
 import { Fragment } from "react";
-import { getGames } from "../redux/actions"
+import { getGames, } from "../redux/actions"
+import{orderAscDesc}from "../redux/actions"
 import GameCard from "./GameCard"
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react"
@@ -10,27 +11,31 @@ import  "../css/home.css"
 export default function Home() {
   const dispatch = useDispatch()
   const allGames = useSelector((state) => state.games)
+  const [order,setOrder]=useState('')
   const [currentPage, setCurrentpage] = useState(1)
   const [charactersPerPage, setCharactersPerPage] = useState(15)
-  const indexOfLastCharacters = currentPage + charactersPerPage
+  const indexOfLastCharacters = currentPage * charactersPerPage
   const indexOfFirstCharacter = indexOfLastCharacters - charactersPerPage
   const currentCharacters = allGames.slice(indexOfFirstCharacter, indexOfLastCharacters) 
   const paginado = (pageNumber) => {
     setCurrentpage(pageNumber)
   }
-
-
   useEffect(() => {
     dispatch(getGames())
   }, [dispatch])
-  function handleClick(e) {
-    e.preventDefault();
-    dispatch(getGames())
-  }
+
 
   const handleReload = () => {
     window.location.reload();
   };
+  function handleOrderAscDesc(e){
+    e.preventDefault()
+    dispatch(orderAscDesc(e.target.value))
+    setCurrentpage(1)
+    setOrder(e.target.value)
+
+  }
+  
 
   return (
     <div className="home">
@@ -42,10 +47,14 @@ export default function Home() {
       <button onClick={() => handleReload()} >Cargar Videojuegos
       </button>
       <div>
-        <select>
-          <option value="asc">Asendente</option>
-          <option value="desc">Desendente</option>
-        </select>
+      <div className="Selector">
+    <h3>Order:</h3>
+      <select onChange={e=>handleOrderAscDesc(e)}>
+        <option hidden={true} value='none'>None</option>
+        <option value='asc'>A-Z</option>
+        <option value='desc'>Z-A</option>
+      </select>
+    </div>
         <select>
           ratin = 0-5
           <option value="0-1">Muy Malo</option>
